@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Paleta del portfolio, sacada de la acuarela de bg-hero-2.
+   Se define una vez y se usa en toda la web (text-tinta, bg-papel, text-ciruela...) */
+@theme {
+  /* Base */
+  --color-papel: #ADB3C3;   /* fondo: el lavanda grisáceo del centro de la acuarela */
+  --color-tinta: #262B40;   /* texto principal y títulos: azul noche */
+  --color-gris: #3B4055;    /* texto secundario (oscuro para leerse bien sobre el lavanda) */
+  --color-linea: #9AA0B3;   /* bordes y separadores */
+
+  /* Acentos: oscuros para que se vean sobre el fondo (usar poco) */
+  --color-ciruela: #6B3A5E; /* acento principal: el malva de la izquierda, oscurecido */
+  --color-azul: #46658F;    /* acento secundario: el azul de la derecha, oscurecido */
+
+  /* Decorativos: los tonos suaves de la acuarela. Solo para fondos y detalles, NO para texto.
+     malva → lavanda → celeste es el degradado del borde superior del Hero (lo usa el navbar) */
+  --color-malva: #BDA9B2;
+  --color-lavanda: #AEB2C3;
+  --color-celeste: #A8BBCA;
+  --color-pistacho: #D3D9A8;
+  --color-crema: #E4DEC0;
+
+  /* Tipografía: font-display para títulos; el resto usa la fuente por defecto */
+  --font-display: "Fraunces", Georgia, serif;
+
+  /* Animación de los destellos del Hero: crea la clase animate-destello.
+     Cada destello pone su propia duración y retraso desde JS. */
+  --animate-destello: destello 4s ease-in-out infinite;
+
+  @keyframes destello {
+    0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+    50%      { opacity: 1; transform: scale(1) rotate(45deg); }
+  }
+
+  /* Desplazamiento lento de cada destello hacia su --dx / --dy (definidos desde JS) y vuelta */
+  --animate-flotar: flotar 15s ease-in-out infinite;
+
+  @keyframes flotar {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(var(--dx), var(--dy)); }
+  }
+}
+
+/* Desplazamiento suave al pulsar enlaces internos (#sobreMi, #proyectos...).
+   Solo si la persona no ha pedido "reducir movimiento" en su sistema. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
